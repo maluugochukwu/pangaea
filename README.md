@@ -7,9 +7,9 @@ This application is written in node and uses mysql as data storage.
 # Configure database
 * Enter database credentials in the ".env.example" file and **SAVE AS** ".env"
 # Run servers
-On one terminal run:
+*On one terminal run:<br>
 `npm run publisher`
-On the other terminal run:
+*On the other terminal run:<br>
 `npm run subscriber`
 
 The publisher server will run on port 8000, while subscriber server will run on port 9000
