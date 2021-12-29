@@ -5,7 +5,6 @@ This application is written in node and uses mysql as data storage.
 ### Using NPM:
 `npm install`
 # Configure database
-* enter database credentials in the ".env.example" file
-* rename ".env.example" to ".env"
+* Enter database credentials in the ".env.example" file and *SAVE AS* ".env"
 # Run servers
 `npm run publisher subscriber`
