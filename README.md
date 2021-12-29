@@ -13,7 +13,7 @@ On the other terminal run:
 `npm run subscriber`
 
 The publisher server will run on port 8000, while subscriber server will run on port 9000
-#Endpoints
+# Endpoints
 #### Add a topic
 call this endpoint on port 8000
 `/topic/:topic`
