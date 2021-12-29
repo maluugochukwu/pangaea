@@ -24,6 +24,6 @@ call this endpoint on port 8000
 `{url:"http://localhost:9000/test1"}`
 
 #### Publish a topic
-call this endpoint on port 8000
+call this endpoint on port 8000 <br>
 `/publish/:topic` **request body**
 `{message:"New Message"}`
