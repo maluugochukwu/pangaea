@@ -20,14 +20,10 @@ call this endpoint on port 8000
 
 #### Subscribe to a topic
 call this endpoint on port 8000
-```
-/subscribe/:topic
-{url:"http://localhost:9000/test1"}
-```
+`/subscribe/:topic`
+`{url:"http://localhost:9000/test1"}`
 
 #### Publish a topic
 call this endpoint on port 8000
-```
-/publish/:topic
-{message:"New Message"}
-````
+`/publish/:topic`
+`{message:"New Message"}`
