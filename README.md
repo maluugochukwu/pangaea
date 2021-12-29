@@ -14,7 +14,7 @@ This application is written in node and uses mysql as data storage.
 
 The publisher server will run on port 8000, while subscriber server will run on port 9000
 # Endpoints
-#### TO ADD A TOPIC
+### TO ADD A TOPIC
 **URI** `/topic/:topic`
 
 #### Subscribe to a topic
