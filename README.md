@@ -17,11 +17,11 @@ The publisher server will run on port 8000, while subscriber server will run on 
 ### TO ADD A TOPIC
 **URI** `/topic/:topic`
 
-#### Subscribe to a topic
+### TO SUBSCRIBE TO A TOPIC
 **URI** `/subscribe/:topic` **request body**
 `{url:"http://localhost:9000/test1"}`
 
-#### Publish a topic
+### TO PUBLISH A TOPIC
  **URI** `/publish/:topic` **request body**
 `{message:"New Message"}`
 
