@@ -22,7 +22,9 @@ app.post('/subscribe/:topic',(req,res)=>{
             subscribers.create({
                 url:req.body.url,
                 topicName:req.params.topic
-              }).then(result=>res.json({url:req.body.url,topic:req.params.topic,data:result.createdAt}))
+              })
+              .then(result=>res.json({url:req.body.url,topic:req.params.topic}))
+              .catch(err=> res.json({message:`The url specified has already been used for ${req.params.topic}`}))
           }else
           {
               res.json({"message":"No URL defined"})
@@ -38,29 +40,49 @@ app.post('/publish/:topic',(req,res)=>{
     topic.findByPk(req.params.topic).then((data)=>{
       if(data)
       {
-        subscribers.findAll({where:{topicName:req.params.topic}}).then((record)=>{
-            if(record)
-            {
-              for (let x in record)
+        if(Object.keys(req.body).length === 0 && req.body.constructor === Object )
+        {
+          res.json({code:403,message:"Kindly specify an object in the request body"})
+        }
+        else
+        {
+          console.log(req.body.length)
+            subscribers.findAll({where:{topicName:req.params.topic}}).then((record)=>{
+              if(record)
               {
-                  console.log(record[x].url)
-                  axios.post(record[x].url, req.body)
-                  .then(function (response) {
-                    res.json({message:"New topic published",status:"sending update on topic to subscribers",topic:req.body})
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
+                for (let x in record)
+                {
+                    axios.post(record[x].url, {topic:req.params.topic,data:req.body})
+                    .then(function (response) {
+                      
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+                }
+                res.json({code:200,message:"New topic published",status:"sent update on topic to subscribers",data:req.body})
               }
-            }
-        })
+          })
+        }
       }else
       {
-        res.json({message:"Invalid topic"})
+        res.json({code:401,message:"Invalid topic"})
       }
     })
 })
-
+app.post('/topic/:topicName',(req,res)=>{
+  topic.create({
+    name:req.params.topicName
+  }).then((data)=>{
+    if(data)
+    {
+      res.json({message:`Hurray!!! ${req.params.topicName} is now a topic`})
+    }else
+    {
+      res.json({message:`Could not add ${req.params.topicName} as a topic`})
+    }
+  }).catch(err=>res.json({message:`Topic name already exist`}))
+})
 app.listen(8000,()=>{
     console.log("server on port 8000 is up...")
 })
